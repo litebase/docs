@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Getting Started",
+    "children": [
+      {
+        "title": "Overview",
+        "path": "/docs/overview"
+      },
+      {
+        "title": "Core Concepts",
+        "path": "/docs/core-concepts"
+      },
+      {
+        "title": "Security",
+        "path": "/docs/security"
+      }
+    ]
+  }
+]
