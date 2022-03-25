@@ -1,7 +1,8 @@
 ---
-title: Security, how we secure your data
 description: How we maintain data security and best practices to follow to ensure your data remains private.
+section: Getting Started
 tags: ['security']
+title: Security, how we secure your data
 ---
 
 # Security
@@ -90,7 +91,7 @@ data today:
     service is encrypted so that not even we can fully know what you are reading
     or writing from your database.
 
-6. ### Secure Compute
+6. ### Dedicated Compute
 
     Within our virtual private cloud we also create isolated compute instances for
     each database. We never resolve database queries in the same compute
@@ -118,15 +119,27 @@ data today:
 
 ## Compliance
 
-We are committed to offering our customers with compliance tools and security measures that customers can utilize to demonstrate compliance with applicable
-legal and regulatory requirements.
+We are committed to offering our customers with compliance tools and security measures that allow our customers to demonstrate compliance with applicable
+legal and regulatory requirements. Please contact us for specific information
+about compliance.
 
 ## Frequently Asked Questions
 
-...
+Can you view my data?
+:   No, we do not have access to your data. We simply administer the
+    infrastructure. When you send queries to the LitebaseDB service encryption
+    prevents us from fully understanding what you are reading or writing.
 
+Are my backups secure?
+:   Yes, all hourly and additional incremental backups are stored within your
+    secure filesystem. Backups that are older than 24 hours are securely stored
+    in a AWS bucket specifically for your database with encryption enabled.
 
+What tools do you provide to monitor security?
+:   You can monitor the audit logs for your account to observer which users
+    within your account have perfomed sensitive tasks. You can also view a
+    summary of your issues access keys and monitor their usage using the query
+    log interface.
 
 {.bg-black .text-white .mt-16.p-8 .rounded}
-If you have any questions or concerns about security, please do not hestitate
-to email us at [security@litebasedb.com](mailto:security@litebasedb.com)
+If you have any questions or concerns about security, please contact us at [security@litebasedb.com](mailto:security@litebasedb.com)
