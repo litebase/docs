@@ -4,8 +4,6 @@ section: Getting Started
 
 # Overview
 
-> {alert:info} This is a test of using the alert block. You should know that this feature is still in development.
-
 LitebaseDB is a relational data service built on top of [SQLite](https://sqlite.com){:target="_blank"}. With LitebaseDB you can create a serverless database in seconds and access it from anywhere via secure HTTP web requests.
 
 * There are no servers to manage.
