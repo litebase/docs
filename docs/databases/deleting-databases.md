@@ -6,4 +6,4 @@ title: Deleting databases
 
 # Deleting Databases
 
-> {alert:danger} **WARNING**: Deleting a database is a permanent action that cannot be reversed.
+> {alert:danger} Deleting a database is a permanent action that cannot be reversed.

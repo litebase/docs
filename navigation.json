@@ -13,6 +13,14 @@
       {
         "title": "Security",
         "path": "/docs/security"
+      },
+      {
+        "title": "Performance",
+        "path": "/docs/performance"
+      },
+      {
+        "title": "Use Cases",
+        "path": "/docs/use-cases"
       }
     ]
   },
@@ -76,6 +84,14 @@
       {
         "title": "Account Invites",
         "path": "/docs/accounts/invites"
+      },
+      {
+        "title": "Access Control",
+        "path": "/docs/accounts/access-control"
+      },
+      {
+        "title": "Audit Logs",
+        "path": "/docs/accounts/audit-logs"
       }
     ]
   },

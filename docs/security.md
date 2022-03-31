@@ -7,26 +7,61 @@ title: Security, how we secure your data
 
 # Security
 
-{.text-xl}
+{class="text-xl font-medium text-black dark:text-white"}
 How we maintain data security and best practices to follow to ensure your data
 remains private.
 
 Security at LitebaseDB is the highest priority. Everything we design and build
-stands on security-first principles so we can provide our customers with
-a best in class experience security and privacy at the forefront.
+stands on security-first principles to ensure we provide our customers with
+the highest levels of protection and privacy at the forefront.
+
+As we process data we implement a Zero Trust secruity model, meaning we trust no
+one by default and verify identiy at every stage of our data processing pipeline.
+In addition to strict networking rules, meant to guard against external instrusion, we also maintain strict access controls between the various components of our [system
+architecture](/docs/core-concepts#system-architecture) within our network perimeter.
+
+**In summary this means:**
+
+* Only our load balancers can communicate with our router nodes. No one from the
+  internet has direct access to these instances.
+* Our router nodes verify identify through access keys and route requests to
+  dedicated compute using unique credentials for each database.
+* Before databse requests are executed, identity is verified through access keys.
+* As compute instances connect to filesystems we utilize resource based policies
+  to ensure a match between decouplked database compute and storage.
 
 ## How your data is processed
 
-...
-...
+When you send your data to the LitebaseDB service we utlize encryption of
+payloads, access keys, and secrets throughout our data processing pipeline.
+
+> {callout} **Database queries are always end-to-end encrypted.**
+
+Any data that is logged for performance or error tracking does not include any
+personal identifiable information about your account, database, or customers.
+We also do not have the ability to fully read your database requests as
+statements and [statment paramenters](/docs/core-concepts#statement-parameters) use some level of encryption. Query statements can be decrypted when viewing query
+logs as you inspect your queries in the console or CLI, but query parameters are
+never stored.
+
+Access key secrets are never stored at the service level or at the
+[router layer](/docs/core-concepts#router-nodes) level. Only the Data Runtime
+has the ability to read access key secrets.
 
 ### Encryption of data at rest
 
-...
+* All database files are encrypted at rest.
+* All databased access keys and secrets are encrypted at rest.
 
 ### Encryption of data in transit
 
-...
+* Requests from database clients include AES-256 encrypted payloads.
+* Requests to the data endpoints are transmitted securely via HTTPS/TLS encryption.
+
+### Data retention
+
+Data stored for query logs are retained for only 7 days. This day remains encrypted
+at rest.
 
 ## How your data is secured
 
@@ -115,7 +150,7 @@ data today:
 
 8. ### Audit Logs
 
-    ...
+   We have an [audit logs](/docs/accounts/audit-logs) that allows your account admins to quickly review the actions performed by members of your account. It includes details such as who performed the action, what the action was, and when it was performed.
 
 ## Compliance
 
@@ -125,7 +160,7 @@ about compliance.
 
 ## Frequently Asked Questions
 
-Can you view my data?
+Can your company view my data?
 :   No, we do not have access to your data. We simply administer the
     infrastructure. When you send queries to the LitebaseDB service encryption
     prevents us from fully understanding what you are reading or writing.
@@ -141,5 +176,7 @@ What tools do you provide to monitor security?
     summary of your issues access keys and monitor their usage using the query
     log interface.
 
-{.bg-black .text-white .mt-16.p-8 .rounded}
-If you have any questions or concerns about security, please contact us at [security@litebasedb.com](mailto:security@litebasedb.com)
+> {callout} **Have Questions?**
+>
+> If you have any questions or concerns about security, please contact us at
+> [security@litebasedb.com](mailto:security@litebasedb.com).

@@ -1,32 +1,57 @@
 ---
 section: Getting Started
+title: Overview
 ---
 
 # Overview
 
-LitebaseDB is a relational data service built on top of [SQLite](https://sqlite.com){:target="_blank"}. With LitebaseDB you can create a serverless database in seconds and access it from anywhere via secure HTTP web requests.
+{.text-lg.font-medium}
+What is LitebaseDB?
 
-* There are no servers to manage.
-* Your data is backed up automatically
-* You can restore your database with point-in-time recovery
-  
+LitebaseDB is a fully managed relational database service with [SQLite](https://sqlite.com){:target="\_blank"}
+compatability. Databases take only seconds to launch and can be accessed anywhere
+via secure HTTP web requests. As a serverless database, you only pay for what you use.
+
+**Key Benefits:**
+
+- No servers to provision or database connections to manage.
+- Durable data storage with automatic back ups and available point-in-time recovery.
+- High performing read throughput and more than capable write capacity.
+
+## Core Concepts
+
+LitebaseDB leverages multiple serverless technologies to deilver a cohesive
+data service at scale. With LitebaseDB you can focus on your application without having to worry about manging servers. Explore topics related to our arcitecture, sending requests to a database, and common knowledge needed to get started.
+
+[Learn more ->](/docs/core-concepts){button:large}
+
 ## Security
 
-LitebaseDB is built on security-first principes. Every component of the service
-is designed to maintain high levels of without sacrificing performance, robust features, and developer experience.
+LitebaseDB is built on security-first principes. Security is feature #1 for every
+component of the service, designed to maintain high levels of protection without
+sacrificing performance, robust feature capabilties, and developer experience.
+
+You can read more about how the overal system is secured in these docs.
 
 [Learn more ->](/docs/security){button:large}
 
 ## Performance
 
 LitebaseDB is fully capable of running production workloads that need to process
-hundreds to thousands of requests per second.
+hundreds to thousands of requests per second. These docs will help you understand
+performance capabilities and how to get the best results.
 
-[Learn more ->](/docs/security){button:large}
+[Learn more ->](/docs/performance){button:large}
 
-## Serverless Architecture
+## Use Cases
 
-There are no servers for you to manage. This means you only pay for what you use
-and you think very little about scaling. When requests are sent to the LitebaseDB Service, each request is executed in n a dedicated compute environment per database. This level of isolation allows LitebaseDB to scale to thousands of requests per second.
+We've outlined some common use cases for LitebaseDB as well as some use
+information on when and when you shouldn't use LitebaseDB.
 
-[Learn more ->](#){button:large}
+[Learn more ->](/docs/use-cases){button:large}
+
+--- 
+> {callout} **Tutorials**{.text-xl}
+> 
+> We're interested to hear what tutorials you would like us to publish. Please
+> send us your requests on twitter -> [@litebasedb](https://twitter.com/litebasedb)
