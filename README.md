@@ -1,5 +1,5 @@
-# LitebaseDB Documentation
-This repository contains the source code for LitebaseDB documentation at <https://litebasedb.com/docs>.
+# Litebase Documentation
+This repository contains the source code for Litebase documentation at <https://litebase.com/docs>.
 
 If you would like a topic covered in the docs, please open an issue in this repository.
 
@@ -10,4 +10,4 @@ If you would like a topic covered in the docs, please open an issue in this repo
 * Contributing
 
 ## Security
-For any security questions or concerns, please email us a security@litebasedb.com.
+For any security questions or concerns, please email us a security@litebase.com.

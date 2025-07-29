@@ -1,0 +1,72 @@
+---
+section: Core Concepts
+title: Interacting with Databases
+---
+
+## Querying a database
+
+Once a database has been created, you can send SQL statements using HTTP or one of the SDKs. Typically a database request is written as a single string:
+
+```sql
+SELECT * FROM users;
+```
+
+However, Litebase expects request payloads to be formatted in JSON:
+
+```json
+{
+  "queries": [
+    {
+      "id": "ffd8b6c4-2f3e-4a1b-9c5e-7f8d9a0b1c2d",
+      "statement": "SELECT * FROM users"
+    }
+  ]
+}
+```
+
+### Statement Parameters
+
+Parameters should be used to protect against SQL injection attacks. It's a
+dangerous idea to accept unfiltered strings from user input. Using parameters
+will treat the input as literal strings and never executed. Parameters can be
+sent in requets using `?` placeholders.
+
+```json
+{
+  "queries": [
+    {
+      "id": "ffd8b6c4-2f3e-4a1b-9c5e-7f8d9a0b1c2d",
+      "statement": "INSERT INTO users (username, password) VALUES (?, ?)",
+      "parameters": [
+        "orbit10",
+        "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+      ]
+    }
+  ]
+}
+```
+
+<Aside type="info">
+  Using statement bindings is the most secure way to send sensitive information
+  to Litebase. Stament bindings is also more performant, as it allows staments
+  to be prepared and cached.
+</Aside>
+
+## Supported clients
+
+To send requests to your database, you'll typically want to use one of our
+clients. These clients are responsible for securing your requests to the
+Litebase service.
+
+**We currently maintain the following 1st party clients:**
+
+| Language/Framework | Availability   |
+| ------------------ | -------------- |
+| PHP                | Releasing soon |
+| Laravel            | Releasing soon |
+| NodeJS             | ⏳             |
+| Go                 | ⏳             |
+
+### Contribute new clients
+
+We are actively working on creating more client SDKs to support as many languages and frameworks as possible. If you would like to request or contribute new one, please start a discussion on [GitHub](https://github.com/litebase/litebase/discussions).

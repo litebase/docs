@@ -1,0 +1,67 @@
+---
+section: Getting Started
+title: Overview
+---
+
+<Aside type="warning">
+  Litebase is in early alpha. Many features are on the way, and these docs will be updated soon. Follow the progress by starring on
+  [GitHub](https://github.com/litebase/litebase) and signing up for
+  [updates](/).
+</Aside>
+
+## Meet Litebase
+
+<Lead>
+  Litebase is a distributed database built on top of
+  [SQLite](https://sqlite.org/). It is designed to run on distributed file
+  systems and object storage, enabling data to be shared across multiple nodes
+  and tiered for optimal cost and performance.
+</Lead>
+
+### Why Litebase?
+
+Cloud computing has unlocked incredible opportunities, but as infrastructure grows, complexity often follows. Modern database solutions can feel fragmented offering many features, but often sacrificing portability, control, and simplicity, making them especially challenging for smaller teams to adopt and manage effectively.
+
+Litebase takes a fresh approach. Built on the trusted foundation of [SQLite](https://www.sqlite.org/mostdeployed.html), Litebase reimagines how a lightweight, embedded database can scale effortlessly in distributed and cloud-native environments.
+
+It has never been easier to get started with SQLite, and now with Litebase you can level up your database while retaining the simplicity and familiarity of SQLite.
+
+### Is Litebase a server or a database?
+
+Litebase is a system of components that includes a server, storage backend, SDKs, and a CLI. While Litebase does embed SQLite and uses it as its core database engine, Litebase introduces a new API surface designed for distributed access over the network.
+
+The query layer is inspired by SQLite's interface and remains compatible with its storage format, but Litebase operates as a standalone database system. It handles coordination, replication, and storage management across multiple nodes. We refer to Litebase as a database, rather than just a server, to emphasize that it offers a cohesive data platform, not just a network wrapper around SQLite, but a reimagined system for modern, distributed use cases.
+
+{/* ---
+
+## Installation
+
+<Aside type="warning">
+  Litebase is currently in alpha. If you're interested in following our
+  progress, please consider starring the project on
+  [GitHub](https://github.com/litebase/litebase) and signing up for
+  [updates](/).
+</Aside>
+
+Litebase is a single binary application that can be installed on Linux, macOS, and Windows.
+
+<Steps>
+1. **Install the Litebase CLI**
+
+    To get started with Litebase, you can install it using the following command:
+
+    ```shell
+    curl -sL https://litebase.com/install.sh | bash
+    ```
+
+    See the [installation guide](/docs/cli/installation) for more details.
+
+  2. Start the server:
+      ```shell
+      litebase serve
+      ```
+</Steps>
+
+ When started, Litebase will automatically create a directory in your home folder called `~/.litebase`, which will contain configuration and data files.
+
+For a full reference of the CLI commands, see the [CLI documentation](/docs/cli/reference). */}

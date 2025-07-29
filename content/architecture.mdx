@@ -1,0 +1,61 @@
+---
+section: Core Concepts
+title: Architecture
+---
+
+<Lead>
+  What does it mean to be a distributed database and how does Litebase work?
+</Lead>
+
+## Introduction
+
+A distributed database is a system that stores and manages data across multiple servers. This is typically achieved through techniques like replication (copying data across nodes) or sharding (splitting data into segments across nodes), allowing systems to scale out and improve reliability.
+
+Litebase takes a different approach. Rather than implementing custom sharding or replication at the database layer, Litebase relies on distributed file systems and object storage as the foundation for data distribution and durability. Modern storage systems can be mounted to multiple servers allowing data to be shared across nodes without the complexity of traditional replication or sharding.
+
+The goal of Litebase is to provide a simple, scalable, and cost-effective database that runs on top of externally managed distributed storage. This design makes it easier to scale out, reduces operational overhead, and allows you to take full advantage of cloud or on-prem storage platforms. These storage systems should be configured and managed externally; once they are up and running, Litebase will access them as needed and coordinate access to the data.
+
+## System Architecture
+
+Litebase is composed of several key components that work together to provide distributed database platform:
+
+### Client
+
+Applications can interact with Litebase over HTTP using a client SDK or the CLI. Requests are sent to the Litebase Server where queries to the database are
+resolved.
+
+### Server
+
+Litebase is designed to run independently on a single node or across a cluster of nodes, providing flexibility in deployment and scaling. When running in a cluster, all nodes must have access to the same distributed storage, which can be mounted or accessed via network protocols like NFS and S3. All nodes must also be able to communicate with each other over a private network.
+
+When running in a cluster, nodes perform cluster election to determine which node will be the leader, otherwise known as the Primary. The Primary is responsible for managing the cluster state, accepting writes to databases, and informing Replicas of data changes. This allows Litebase to scale horizontally, distributing the load across multiple nodes while maintaining a single logical database.
+
+### Distributed File System
+
+Distributed storage systems should be mounted or accessible by all nodes in the cluster. Once mounted to the hardware, the path to the storage can be configured to inform Litebase of the location of the data files.
+
+**Requirements:**
+
+- Strong read-after-write consistency
+- Support for concurrent access by multiple nodes
+- Support for POSIX file locking
+
+### Object Storage
+
+Litebase leverages object storage to efficiently manage data that is accessed less frequently, including database pages, backups, and logs accumulated during data processing. By offloading this data to cost-effective object storage systems, Litebase significantly reduces storage costs without sacrificing durability or availability.
+
+In Litebase's architecture, object storage acts as a tier ("cold"), complementing faster storage layers that hold frequently accessed ("hot") data. This seamless tiering allows cold data to be archived efficiently, enabling Litebase to scale economically across distributed environments while maintaining strong performance.
+
+### Routing to Nodes
+
+Nodes can be deployed behind a load balancer, which distributes incoming requests evenly across available nodes. When a Replica node receives a request that should be handled by the Primary, it forwards the request locally to the Primary node. This design ensures all write operations and cluster management tasks are handled exclusively by the Primary, while read operations can be served by any node in the cluster.
+
+## Benefits of External Storage
+
+Using external storage systems offers several important advantages:
+
+- **Scalability:** Easily handle growing data volumes by adding more nodes, allowing the system to scale horizontally without sacrificing performance.
+- **Robust Replication and Consistency:** By leveraging mature distributed file systems, Litebase inherits their built-in replication and consensus mechanisms, ensuring data durability and consistency across the cluster.
+- **Improved Throughput:** Distributing data across external storage and multiple nodes enables higher aggregate read and write throughput, reducing bottlenecks and improving overall system responsiveness.
+- **Cost Efficiency:** Offloading storage to external systems can optimize resource use and reduce operational overhead.
+- **Flexibility:** External storage enables integration with a variety of backend systems and cloud providers, giving developers choice and control.
