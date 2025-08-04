@@ -26,10 +26,9 @@ However, Litebase expects request payloads to be formatted in JSON:
 
 ### Statement Parameters
 
-Parameters should be used to protect against SQL injection attacks. It's a
-dangerous idea to accept unfiltered strings from user input. Using parameters
-will treat the input as literal strings and never executed. Parameters can be
-sent in requets using `?` placeholders.
+When sending SQL statements, you can use statement parameters to safely include user input in your queries. This is especially important for statements that modify data, such as `INSERT`, `UPDATE`, or `DELETE`.
+
+Using statement parameters will help protect against SQL injection attacks. It's a dangerous idea to accept unfiltered strings from user input, so using parameters will treat the input as literal strings that are never executed as code. Parameters can be sent in requests using `?` placeholders.
 
 ```json
 {
@@ -47,9 +46,9 @@ sent in requets using `?` placeholders.
 ```
 
 <Aside type="info">
-  Using statement bindings is the most secure way to send sensitive information
-  to Litebase. Stament bindings is also more performant, as it allows staments
-  to be prepared and cached.
+  Using statement parameters is the most secure way to send sensitive
+  information to Litebase. Statement parameters are also more performant, as
+  they allow statements to be prepared and cached.
 </Aside>
 
 ## Supported clients
