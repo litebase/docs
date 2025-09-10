@@ -8,11 +8,9 @@ title: CLI Reference
   Litebase is currently in alpha, the CLI is subject to change
 </Aside>
 
-The Litebase CLI is a powerful tool that allows you to manage your account,
-clusters, databases, branches, and more. This page is a full reference to the CLI.
+The Litebase CLI provides commands for managing clusters, databases, branches, and related resources. This page documents all available CLI commands and their usage.
 
-The following commands are available in the CLI. Please note that some commands
-are executed locally.
+The following commands are available in the CLI. Please note that some commands are executed locally.
 
 <Legend title="Contexts">
   <ul>
@@ -25,20 +23,36 @@ are executed locally.
   </ul>
 </Legend>
 
-| Command                   | Subcommands                          | Description                                  |                Context                |
-| :------------------------ | :----------------------------------- | :------------------------------------------- | :-----------------------------------: |
-| [access-key](#access-key) | `create`, `delete`, `update`, `list` | Manage access keys                           | <Dot color="green" title="Cluster" /> |
-| [backup](#backup)         | `create`, `delete`, `list`           | Manage database backups                      | <Dot color="green" title="Cluster" /> |
-| [branch](#branch)         | `create`, `delete`, `update`, `list` | Manage database branches                     | <Dot color="green" title="Cluster" /> |
-| [database](#database)     | `create`, `update`, `delete`, `list` | Manage databases                             | <Dot color="green" title="Cluster" /> |
-| [help](#help)             |                                      | CLI usage                                    |  <Dot color="amber" title="Local" />  |
-| [profile](#profile)       | `create`, `delete`                   | Manage your profiles                         |  <Dot color="amber" title="Local" />  |
-| [restore](#restore)       |                                      | Restore a database from a backup or snapshot | <Dot color="green" title="Cluster" /> |
-| [serve](#serve)           |                                      | Start the Litebase server locally            |  <Dot color="amber" title="Local" />  |
-| [snapshot](#snapshot)     | `list` , `show`                      | Manage database snapshots                    | <Dot color="green" title="Cluster" /> |
-| [sql](#sql)               |                                      | Run SQL queries                              | <Dot color="green" title="Cluster" /> |
-| [user](#user)             | `create`, `update`, `delete`, `list` | Manage cluster users                         | <Dot color="green" title="Cluster" /> |
-| [version](#version)       |                                      | Show the version of the CLI                  |  <Dot color="amber" title="Local" />  |
+## Root Commands
+
+| Command&nbsp;&nbsp;&nbsp; | Subcommands                                                                              | Description                             |                Context                |
+| :------------------------ | :--------------------------------------------------------------------------------------- | :-------------------------------------- | :-----------------------------------: |
+| [access-key](#access-key) | `create`, `delete`, `list`, `show`, `update`                                             | Manage access keys                      | <Dot color="green" title="Cluster" /> |
+| [config](#config)         | `init`, `show`                                                                           | Manage CLI configuration                |  <Dot color="green" title="Local" />  |
+| [database](#database)     | `backup`, `create`, `delete`, `list`, `query`, `query-logs`, `restore`, `show`, `update` | Manage databases                        | <Dot color="green" title="Cluster" /> |
+| [help](#help)             |                                                                                          | CLI usage                               |  <Dot color="amber" title="Local" />  |
+| [profile](#profile)       | `create`, `current`, `delete`, `list`, `switch`                                          | Manage your profiles                    |  <Dot color="amber" title="Local" />  |
+| [start](#start)           |                                                                                          | Start the Litebase server locally       |  <Dot color="amber" title="Local" />  |
+| [status](#status)         |                                                                                          | Show the status of the Litebase cluster |  <Dot color="amber" title="Local" />  |
+| [token](#token)           | `create`, `delete`, `list`, `show`, `update`                                             | Manage cluster tokens                   | <Dot color="green" title="Cluster" /> |
+| [user](#user)             | `create`, `delete`, `list`, `show`, `update`                                             | Manage cluster users                    | <Dot color="green" title="Cluster" /> |
+
+&nbsp;
+
+### Global Options
+
+| Option              | Description                                            | Default |
+| :------------------ | :----------------------------------------------------- | :------ |
+| `access-key-id`     | The ID of the access key to use for authentication     | —       |
+| `access-key-secret` | The secret of the access key to use for authentication | —       |
+| `config`            | The path to the CLI configuration file                 | —       |
+| `help`              | Show help for the command                              | —       |
+| `interactive`       | Run the command in interactive mode                    | `true`  |
+| `password`          | The password to use for authentication                 | —       |
+| `profile`           | The profile to use from the CLI configuration          | —       |
+| `token`             | The token to use for authentication                    | —       |
+| `url`               | The URL of the Litebase server to connect to           | —       |
+| `username`          | The username to use for authentication                 | —       |
 
 ---
 
@@ -46,147 +60,148 @@ are executed locally.
 
 Manage access keys
 
-| Command                  | Description                              |
-| :----------------------- | :--------------------------------------- |
-| `access-key create`      | Create a new access key                  |
-| `access-key delete <id>` | Delete an access key                     |
-| `access-key list`        | List all access keys                     |
-| `access-key update <id>` | Update the capabilities of an access key |
+```shell
+litebase access-key
+```
 
-### `access-key create`
+**Commands**
+
+| Command                    | Description                              |
+| :------------------------- | :--------------------------------------- |
+| `access-key` `create`      | Create a new access key                  |
+| `access-key` `delete <id>` | Delete an access key                     |
+| `access-key` `list`        | List all access keys                     |
+| `access-key` `show <id>`   | Show details of an access key            |
+| `access-key` `update <id>` | Update the capabilities of an access key |
+
+<br />
+
+### `access-key` `create`
+
+Create a new access key
 
 ```shell
 litebase access-key create
 ```
 
-### `access-key delete`
+**Options**
+
+| Option          | Description                                      | Default |
+| :-------------- | :----------------------------------------------- | :------ |
+| `--description` | A description for the access key                 | —       |
+| `--statements`  | Define privileges for this access key using JSON | —       |
+
+<br />
+
+### `access-key` `delete`
+
+Delete an access key
 
 ```shell
 litebase access-key delete <id>
 ```
 
-| Parameter | Description                         |
-| :-------- | :---------------------------------- |
-| `<id>`    | This id of the access key to delete |
+**Parameters**
+
+| Parameter | Description                        |
+| :-------- | :--------------------------------- |
+| `<id>`    | The id of the access key to delete |
+
+<br />
+
+### `access-key` `list`
+
+List all access keys
+
+```shell
+litebase access-key list
+```
+
+<br />
+
+### `access-key` `show`
+
+Show details of an access key
+
+```shell
+litebase access-key show <id>
+```
+
+**Parameters**
+
+| Parameter | Description                      |
+| :-------- | :------------------------------- |
+| `<id>`    | The id of the access key to show |
+
+<br />
+
+### `access-key` `update`
+
+Update the capabilities of an access key
+
+```shell
+litebase access-key update <id>
+```
+
+**Parameters**
+
+| Parameter | Description                        |
+| :-------- | :--------------------------------- |
+| `<id>`    | The id of the access key to update |
+
+**Options**
+
+| Option          | Description                                      | Default |
+| :-------------- | :----------------------------------------------- | :------ |
+| `--description` | A description for the access key                 | —       |
+| `--statements`  | Define privileges for this access key using JSON | —       |
 
 ---
 
-## `backup`
+## `config`
 
-Manage logical backups for a database
+Manage CLI configuration
 
 ```shell
-litebase backup
+litebase config
 ```
 
-### `backup create`
+<br />
 
-Create a new backup of a database.
+### `config` `init`
+
+Initialize the CLI configuration
 
 ```shell
-litebase backup create
+litebase config init
 ```
 
-### `backup delete`
+**Options**
 
-Delete a backup of a database, this action is irreversible.
+| Option                   | Description                                             | Default |
+| :----------------------- | :------------------------------------------------------ | :------ |
+| `--cluster-id`           | Cluster ID for the server                               | —       |
+| `--config-path`          | Path to the configuration file                          | —       |
+| `--debug`                | Enable debug mode                                       | —       |
+| `-h`, `--help`           | Help for init                                           | —       |
+| `-i`, `--interactive`    | Run with user interaction (`true`)                      | true    |
+| `--key`                  | Encryption key (if not provided, one will be generated) | —       |
+| `--path`                 | Path to the configuration file                          | —       |
+| `--port`                 | Port to run the server on                               | 9876    |
+| `--storage-network-path` | Path to the network storage directory                   | —       |
+| `--storage-path`         | Path to the storage directory                           | —       |
+| `--storage-tmp-path`     | Path to the temporary storage directory                 | —       |
+| `--tls-cert-path`        | Path to the TLS certificate                             | —       |
+| `--tls-key-path`         | Path to the TLS key                                     | —       |
 
-```shell
-litebase backup delete <id>
-```
+<br />
 
-### `backup list`
+### `config show`
 
-List all backups of a database.
-
-```shell
-litebase backup list
-```
-
----
-
-## `branch`
-
-Manage database branches
-
-```shell
-litebase branch
-```
-
-### `branch create`
-
-Create a new database branch
+Show the current CLI configuration
 
 ```shell
-litebase branch create
-```
-
-### `branch delete`
-
-Delete a database branch
-
-```shell
-litebase branch delete <id>
-```
-
-### `branch update`
-
-Update a database branch
-
-```shell
-litebase branch update
-```
-
-### `branch list`
-
-List all database branches
-
-```shell
-litebase branch list
-```
-
-Manage database branches
-
----
-
-## `cluster`
-
-Manage Litebase clusters
-
-```shell
-litebase cluster
-```
-
-### `cluster create`
-
-Create a new Litebase cluster
-
-```shell
-litebase cluster create
-```
-
-### `cluster delete`
-
-Delete a Litebase cluster
-
-```shell
-litebase cluster delete <id>
-```
-
-### `cluster update`
-
-Update a Litebase cluster
-
-```shell
-litebase cluster update <id>
-```
-
-### `cluster list`
-
-List all Litebase clusters
-
-```shell
-litebase cluster list
+litebase config show
 ```
 
 ---
@@ -199,31 +214,55 @@ Manage databases
 litebase database
 ```
 
-### `database create`
+**Commands**
+
+| Command                              | Description                   |
+| :----------------------------------- | :---------------------------- |
+| `backup [command]`                   | Manage database backups       |
+| `create <name> [--flags]`            | Create a new database         |
+| `delete <name>`                      | Delete a database             |
+| `list`                               | List databases                |
+| `query <name> <statement> [--flags]` | Execute a query on a database |
+| `query-logs`                         | View database query logs      |
+| `restore <name>`                     | Restore a database            |
+| `show <name>`                        | Get a database                |
+| `update <name>`                      | Update an existing database   |
+
+<br />
+
+### `database` `create`
 
 Create a new database
 
 ```shell
-litebase database create
+litebase database create <name>
 ```
 
-### `database update`
+**Parameters**
 
-Update a database
+| Parameter | Description              |
+| :-------- | :----------------------- |
+| `<name>`  | The name of the database |
 
-```shell
-litebase database update <id>
-```
+<br />
 
-### `database delete`
+### `database` `delete`
 
 Delete a database
 
 ```shell
-litebase database delete <id>
+litebase database delete <name>
 ```
 
-### `database list`
+**Parameters**
+
+| Parameter | Description              |
+| :-------- | :----------------------- |
+| `<name>`  | The name of the database |
+
+<br />
+
+### `database` `list`
 
 List all databases
 
@@ -231,10 +270,227 @@ List all databases
 litebase database list
 ```
 
-**Command Flags:**
+<br />
+
+### `database` `update`
+
+Update a database
+
+```shell
+litebase database update <name>
+```
+
+**Parameters**
+
+| Parameter | Description              |
+| :-------- | :----------------------- |
+| `<name>`  | The name of the database |
+
+<br />
+
+### `database` `backup`
+
+Manage logical backups for a database
+
+```shell
+litebase database backup <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+<br />
+
+#### `database` `backup` `create`
+
+Create a new backup of a database.
+
+```shell
+litebase database backup create <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+<br />
+
+#### `database` `backup` `delete`
+
+Delete a backup of a database, this action is irreversible.
+
+```shell
+litebase database backup delete <name> <id>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+| `<id>`    | The id of the backup to delete                 |
+
+<br />
+
+#### `database` `backup` `list`
+
+List all backups of a database.
+
+```shell
+litebase database backup list <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+### `database` `branch`
+
+Manage database branches
+
+```shell
+litebase database branch
+```
+
+<br />
+
+#### `database` `branch` `create`
+
+Create a new database branch
+
+```shell
+litebase database branch create <name>
+```
+
+**Parameters**
+
+| Parameter | Description              |
+| :-------- | :----------------------- |
+| `<name>`  | The name of the database |
+
+<br />
+
+#### `database` `branch` `delete`
+
+Delete a database branch
+
+```shell
+litebase database branch delete <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+<br />
+
+#### `database` `branch` `update`
+
+Update a database branch
+
+```shell
+litebase database branch update <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+<br />
+
+#### `database` `branch` `list`
+
+List all database branches
+
+```shell
+litebase database branch list <name>
+```
+
+**Parameters**
+
+| Parameter | Description              |
+| :-------- | :----------------------- |
+| `<name>`  | The name of the database |
+
+<br />
+
+### `database` `restore`
+
+Restore a database from a backup or snapshot
+
+```shell
+litebase database restore <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+**Options**
 
 | Option | Description | Default |
 | :----- | :---------- | :------ |
+
+<br />
+
+### `database` `snapshot`
+
+Manage database snapshots
+
+```shell
+litebase database snapshot
+```
+
+<br />
+
+#### `database` `snapshot` `list`
+
+List all database snapshots
+
+```shell
+litebase database snapshot list <name>
+```
+
+**Parameters**
+
+| Parameter | Description                                    |
+| :-------- | :--------------------------------------------- |
+| `<name>`  | The name of the database, including the branch |
+
+**Options**
+
+| Option | Description | Default |
+| :----- | :---------- | :------ |
+
+<br />
+
+#### `database` `snapshot` `show`
+
+Show a specific database snapshot
+
+```shell
+litebase database snapshot show <name> <id>
+```
+
+**Parameters**
+
+| Parameter | Description                                     |
+| :-------- | :---------------------------------------------- |
+| `<name>`  | The` name of the database, including the branch |
+| `<id>`    | The id of the snapshot to show                  |
 
 ---
 
@@ -256,9 +512,19 @@ Manage your profiles
 litebase profile
 ```
 
---
+**Commands**
 
-### `profile create`
+| Command                 | Description       |
+| :---------------------- | :---------------- |
+| `profile create <name>` | Create a profile  |
+| `profile current`       | Show current      |
+| `profile delete <name>` | Delete a profile  |
+| `profile list`          | List all profiles |
+| `profile switch <name>` | Switch profile    |
+
+<br />
+
+### `profile` `create`
 
 Store a new profile in your local configuration
 
@@ -266,9 +532,15 @@ Store a new profile in your local configuration
 litebase profile create <name>
 ```
 
----
+**Parameters**
 
-### `profile delete`
+| Parameter | Description                       |
+| :-------- | :-------------------------------- |
+| `<name>`  | The name of the profile to create |
+
+<br />
+
+### `profile` `delete`
 
 Delete a profile from your local configuration
 
@@ -276,38 +548,53 @@ Delete a profile from your local configuration
 litebase profile delete <name>
 ```
 
-**Command Flags:**
+| Parameter | Description                       |
+| :-------- | :-------------------------------- |
+| `<name>`  | The name of the profile to delete |
+
+**Options**
 
 | Option | Description | Default |
 | :----- | :---------- | :------ |
 
----
+<br />
 
-## `restore`
+### `profile` `list`
 
-Restore a database from a backup or snapshot
+List all profiles in your local configuration
 
 ```shell
-litebase restore
+litebase profile list
 ```
 
-**Command Flags:**
+<br />
 
-| Option | Description | Default |
-| :----- | :---------- | :------ |
+### `profile` `switch`
+
+Switch to a different profile
+
+```shell
+litebase profile switch <name>
+```
+
+**Parameters**
+
+| Parameter | Description                       |
+| :-------- | :-------------------------------- |
+| `<name>`  | The name of the profile to switch |
 
 ---
 
 ## `serve`
 
 Start an instanace of the Litebase server. The server can be configured with the
-following options as command flags or environment variables.
+following options as command options or environment variables.
 
 ```shell
 litebase serve
 ```
 
-**Command Flags:**
+**Options**
 
 | Option        | Description                                | Default           |
 | :------------ | :----------------------------------------- | :---------------- |
@@ -335,46 +622,93 @@ litebase serve
 
 ---
 
-## `sql`
+## `status`
 
-Run SQL queries
+Show the status of the cluster
 
 ```shell
-litebase sql
+litebase status
 ```
 
 ---
 
-## `snapshot`
+## `token`
 
-Manage database snapshots
-
-```shell
-litebase snapshot
-```
-
----
-
-### `snapshot list`
-
-List all database snapshots
+Manage tokens
 
 ```shell
-litebase snapshot list
+litebase token
 ```
 
-**Command Flags:**
+**Commands**
+
+| Command                 | Description              |
+| :---------------------- | :----------------------- |
+| `create [--flags]`      | Create a new token       |
+| `delete <id>`           | Delete a token           |
+| `list`                  | List tokens              |
+| `show <id>`             | Show token details       |
+| `update <id> [--flags]` | Update an existing token |
+
+<br />
+
+### `token` `create`
+
+Create a new token
+
+```shell
+litebase token create [--flags]
+```
+
+**Options**
 
 | Option | Description | Default |
 | :----- | :---------- | :------ |
 
-### `snapshot show`
+<br />
 
-Show a specific database snapshot
+### `token` `delete`
+
+Delete a token
 
 ```shell
-litebase snapshot show
+litebase token delete <id>
 ```
+
+<br />
+
+### `token` `list`
+
+List tokens
+
+```shell
+litebase token list
+```
+
+<br />
+
+### `token` `show`
+
+Show token details
+
+```shell
+litebase token show <id>
+```
+
+<br />
+
+### `token` `update`
+
+Update an existing token
+
+```shell
+litebase token update <id> [--flags]
+```
+
+**Options**
+
+| Option | Description | Default |
+| :----- | :---------- | :------ |
 
 ---
 
@@ -386,21 +720,35 @@ Manage users
 litebase user
 ```
 
+**Commands**
+
+| Command                            | Description       |
+| :--------------------------------- | :---------------- |
+| `user create [--flags]`            | Create a new user |
+| `user delete <username>`           | Delete a user     |
+| `user list [--flags]`              | List all users    |
+| `user show <username>`             | Show user details |
+| `user update <username> [--flags]` | Update a user     |
+
+<br />
+
 ### `user create`
 
 Create a new user
 
 ```shell
-litebase user create
+litebase user create [--flags]
 ```
 
-### `user update`
+**Options**
 
-Update a cluster user
+| Option           | Description                                | Default |
+| :--------------- | :----------------------------------------- | :------ |
+| `--new-password` | Password for the new user                  | —       |
+| `--new-username` | Username for the new user                  | —       |
+| `--statements`   | Define privileges for this user using JSON | —       |
 
-```shell
-litebase user update <id>
-```
+<br />
 
 ### `user delete`
 
@@ -410,12 +758,62 @@ Delete a cluster user
 litebase user delete <username>
 ```
 
----
+**Parameters**
 
-## `version`
+| Parameter    | Description                        |
+| :----------- | :--------------------------------- |
+| `<username>` | The username of the user to delete |
 
-Show the version of the CLI
+<br />
+
+### `user list`
+
+List all cluster users
 
 ```shell
-litebase version
+litebase user list [--flags]
 ```
+
+**Options**
+| Option | Description | Default |
+| :----- | :---------- | :------ |
+
+<br />
+
+### `user show`
+
+Show details of a cluster user
+
+```shell
+litebase user show <username>
+```
+
+**Parameters**
+
+| Parameter    | Description                      |
+| :----------- | :------------------------------- |
+| `<username>` | The username of the user to show |
+
+<br />
+
+### `user update`
+
+Update a cluster user
+
+```shell
+litebase user update <username> [--flags]
+```
+
+**Parameters**
+
+| Parameter    | Description                        |
+| :----------- | :--------------------------------- |
+| `<username>` | The username of the user to update |
+
+**Options**
+
+| Option         | Description                                | Default |
+| :------------- | :----------------------------------------- | :------ |
+| `--statements` | Define privileges for this user using JSON | —       |
+
+<br />
