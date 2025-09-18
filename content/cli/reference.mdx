@@ -39,7 +39,7 @@ The following commands are available in the CLI. Please note that some commands 
 
 <br />
 
-### Global Options
+### Global Flags
 
 | Option              | Description                                            | Default |
 | :------------------ | :----------------------------------------------------- | :------ |
@@ -84,7 +84,7 @@ Create a new access key
 litebase access-key create
 ```
 
-**Options**
+**Flags**
 
 | Option          | Description                                      | Default |
 | :-------------- | :----------------------------------------------- | :------ |
@@ -149,7 +149,7 @@ litebase access-key update <id>
 | :-------- | :--------------------------------- |
 | `<id>`    | The id of the access key to update |
 
-**Options**
+**Flags**
 
 | Option          | Description                                      | Default |
 | :-------------- | :----------------------------------------------- | :------ |
@@ -176,7 +176,7 @@ Initialize the CLI configuration
 litebase config init
 ```
 
-**Options**
+**Flags**
 
 | Option                   | Description                                             | Default |
 | :----------------------- | :------------------------------------------------------ | :------ |
@@ -439,7 +439,7 @@ litebase database restore <name>
 | :-------- | :--------------------------------------------- |
 | `<name>`  | The name of the database, including the branch |
 
-**Options**
+**Flags**
 
 | Option | Description | Default |
 | :----- | :---------- | :------ |
@@ -470,7 +470,7 @@ litebase database snapshot list <name>
 | :-------- | :--------------------------------------------- |
 | `<name>`  | The name of the database, including the branch |
 
-**Options**
+**Flags**
 
 | Option | Description | Default |
 | :----- | :---------- | :------ |
@@ -552,7 +552,7 @@ litebase profile delete <name>
 | :-------- | :-------------------------------- |
 | `<name>`  | The name of the profile to delete |
 
-**Options**
+**Flags**
 
 | Option | Description | Default |
 | :----- | :---------- | :------ |
@@ -588,13 +588,13 @@ litebase profile switch <name>
 ## `serve`
 
 Start an instance of the Litebase server. The server can be configured with the
-following options as command options or environment variables.
+following options as command flags or environment variables.
 
 ```shell
 litebase serve
 ```
 
-**Options**
+**Flags**
 
 | Option        | Description                                | Default           |
 | :------------ | :----------------------------------------- | :---------------- |
@@ -660,10 +660,12 @@ Create a new token
 litebase token create [--flags]
 ```
 
-**Options**
+**Flags**
 
-| Option | Description | Default |
-| :----- | :---------- | :------ |
+| Option          | Description                                 | Default |
+| :-------------- | :------------------------------------------ | :------ |
+| `--description` | A description for the token                 | —       |
+| `--statements`  | Define privileges for this token using JSON | —       |
 
 <br />
 
@@ -705,10 +707,12 @@ Update an existing token
 litebase token update <id> [--flags]
 ```
 
-**Options**
+**Flags**
 
-| Option | Description | Default |
-| :----- | :---------- | :------ |
+| Option          | Description                                 | Default |
+| :-------------- | :------------------------------------------ | :------ |
+| `--description` | A description for the token                 | —       |
+| `--statements`  | Define privileges for this token using JSON | —       |
 
 ---
 
@@ -740,7 +744,7 @@ Create a new user
 litebase user create [--flags]
 ```
 
-**Options**
+**Flags**
 
 | Option           | Description                                | Default |
 | :--------------- | :----------------------------------------- | :------ |
@@ -774,7 +778,7 @@ List all cluster users
 litebase user list [--flags]
 ```
 
-**Options**
+**Flags**
 | Option | Description | Default |
 | :----- | :---------- | :------ |
 
@@ -810,7 +814,7 @@ litebase user update <username> [--flags]
 | :----------- | :--------------------------------- |
 | `<username>` | The username of the user to update |
 
-**Options**
+**Flags**
 
 | Option         | Description                                | Default |
 | :------------- | :----------------------------------------- | :------ |
