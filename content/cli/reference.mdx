@@ -439,11 +439,6 @@ litebase database restore <name>
 | :-------- | :--------------------------------------------- |
 | `<name>`  | The name of the database, including the branch |
 
-**Flags**
-
-| Option | Description | Default |
-| :----- | :---------- | :------ |
-
 <br />
 
 ### `database` `snapshot`
@@ -469,11 +464,6 @@ litebase database snapshot list <name>
 | Parameter | Description                                    |
 | :-------- | :--------------------------------------------- |
 | `<name>`  | The name of the database, including the branch |
-
-**Flags**
-
-| Option | Description | Default |
-| :----- | :---------- | :------ |
 
 <br />
 
@@ -552,11 +542,6 @@ litebase profile delete <name>
 | :-------- | :-------------------------------- |
 | `<name>`  | The name of the profile to delete |
 
-**Flags**
-
-| Option | Description | Default |
-| :----- | :---------- | :------ |
-
 <br />
 
 ### `profile` `list`
@@ -604,8 +589,8 @@ litebase serve
 | `--port`      | The port to run the server on              | `8080`            |
 | `--signature` | The signature to use for server encryption | —                 |
 | `--tmp-path`  | The directory to use for temporary files   | `./.litebase-tmp` |
-| `tls-cert`    | The path to the TLS certificate            | —                 |
-| `tls-key`     | The path to the TLS key                    | —                 |
+| `--tls-cert`  | The path to the TLS certificate            | —                 |
+| `--tls-key`   | The path to the TLS key                    | —                 |
 
 **Environment Variables:**
 
@@ -775,12 +760,8 @@ litebase user delete <username>
 List all cluster users
 
 ```shell
-litebase user list [--flags]
+litebase user list
 ```
-
-**Flags**
-| Option | Description | Default |
-| :----- | :---------- | :------ |
 
 <br />
 
