@@ -504,13 +504,13 @@ litebase profile
 
 **Commands**
 
-| Command                 | Description       |
-| :---------------------- | :---------------- |
-| `profile create <name>` | Create a profile  |
-| `profile current`       | Show current      |
-| `profile delete <name>` | Delete a profile  |
-| `profile list`          | List all profiles |
-| `profile switch <name>` | Switch profile    |
+| Command                           | Description       |
+| :-------------------------------- | :---------------- |
+| `profile create <name> [--flags]` | Create a profile  |
+| `profile current`                 | Show current      |
+| `profile delete <name>`           | Delete a profile  |
+| `profile list`                    | List all profiles |
+| `profile switch <name>`           | Switch profile    |
 
 <br />
 
@@ -527,6 +527,19 @@ litebase profile create <name>
 | Parameter | Description                       |
 | :-------- | :-------------------------------- |
 | `<name>`  | The name of the profile to create |
+
+**Flags**
+
+| Option                        | Description                                              | Default |
+| :---------------------------- | :------------------------------------------------------- | :------ |
+| `--profile-access-key-id`     | Access Key ID (required if type is Access Key)           | -       |
+| `--profile-access-key-secret` | Access Key Secret (required if type is Access Key)       | -       |
+| `--profile-cluster`           | Cluster URL (required)                                   | -       |
+| `--profile-name`              | Name of the profile (required)                           | -       |
+| `--profile-password`          | Password for Basic Auth (required if type is Basic Auth) | -       |
+| `--profile-token`             | Token value (required if type is Token)                  | -       |
+| `--profile-type`              | Type of profile (Access Key or Basic Auth) (required)    | -       |
+| `--profile-username`          | Username for Basic Auth (required if type is Basic Auth) | -       |
 
 <br />
 
