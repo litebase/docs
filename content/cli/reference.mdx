@@ -41,18 +41,18 @@ The following commands are available in the CLI. Please note that some commands 
 
 ### Global Flags
 
-| Option              | Description                                            | Default |
+| Flag                | Description                                            | Default |
 | :------------------ | :----------------------------------------------------- | :------ |
-| `access-key-id`     | The ID of the access key to use for authentication     | -       |
-| `access-key-secret` | The secret of the access key to use for authentication | -       |
-| `config`            | The path to the CLI configuration file                 | -       |
-| `help`              | Show help for the command                              | -       |
+| `access-key-id`     | The ID of the access key to use for authentication     | `-`     |
+| `access-key-secret` | The secret of the access key to use for authentication | `-`     |
+| `config`            | The path to the CLI configuration file                 | `-`     |
+| `help`              | Show help for the command                              | `-`     |
 | `interactive`       | Run the command in interactive mode                    | `true`  |
-| `password`          | The password to use for authentication                 | -       |
-| `profile`           | The profile to use from the CLI configuration          | -       |
-| `token`             | The token to use for authentication                    | -       |
-| `url`               | The URL of the Litebase server to connect to           | -       |
-| `username`          | The username to use for authentication                 | -       |
+| `password`          | The password to use for authentication                 | `-`     |
+| `profile`           | The profile to use from the CLI configuration          | `-`     |
+| `token`             | The token to use for authentication                    | `-`     |
+| `url`               | The URL of the Litebase server to connect to           | `-`     |
+| `username`          | The username to use for authentication                 | `-`     |
 
 ---
 
@@ -86,10 +86,10 @@ litebase access-key create
 
 **Flags**
 
-| Option          | Description                                      | Default |
+| Flag            | Description                                      | Default |
 | :-------------- | :----------------------------------------------- | :------ |
-| `--description` | A description for the access key                 | -       |
-| `--statements`  | Define privileges for this access key using JSON | -       |
+| `--description` | A description for the access key                 | `-`     |
+| `--statements`  | Define privileges for this access key using JSON | `-`     |
 
 <br />
 
@@ -151,10 +151,10 @@ litebase access-key update <id>
 
 **Flags**
 
-| Option          | Description                                      | Default |
+| Flag            | Description                                      | Default |
 | :-------------- | :----------------------------------------------- | :------ |
-| `--description` | A description for the access key                 | -       |
-| `--statements`  | Define privileges for this access key using JSON | -       |
+| `--description` | A description for the access key                 | `-`     |
+| `--statements`  | Define privileges for this access key using JSON | `-`     |
 
 ---
 
@@ -178,21 +178,21 @@ litebase config init
 
 **Flags**
 
-| Option                   | Description                                             | Default |
+| Flag                     | Description                                             | Default |
 | :----------------------- | :------------------------------------------------------ | :------ |
-| `--cluster-id`           | Cluster ID for the server                               | -       |
-| `--config-path`          | Path to the configuration file                          | -       |
-| `--debug`                | Enable debug mode                                       | -       |
-| `-h`, `--help`           | Help for init                                           | -       |
-| `-i`, `--interactive`    | Run with user interaction (`true`)                      | true    |
-| `--key`                  | Encryption key (if not provided, one will be generated) | -       |
-| `--path`                 | Path to the configuration file                          | -       |
-| `--port`                 | Port to run the server on                               | 9876    |
-| `--storage-network-path` | Path to the network storage directory                   | -       |
-| `--storage-path`         | Path to the storage directory                           | -       |
-| `--storage-tmp-path`     | Path to the temporary storage directory                 | -       |
-| `--tls-cert-path`        | Path to the TLS certificate                             | -       |
-| `--tls-key-path`         | Path to the TLS key                                     | -       |
+| `--cluster-id`           | Cluster ID for the server                               | `-`     |
+| `--config-path`          | Path to the configuration file                          | `-`     |
+| `--debug`                | Enable debug mode                                       | `-`     |
+| `-h`, `--help`           | Help for init                                           | `-`     |
+| `-i`, `--interactive`    | Run with user interaction (`true`)                      | `true`  |
+| `--key`                  | Encryption key (if not provided, one will be generated) | `-`     |
+| `--path`                 | Path to the configuration file                          | `-`     |
+| `--port`                 | Port to run the server on                               | `9876`  |
+| `--storage-network-path` | Path to the network storage directory                   | `-`     |
+| `--storage-path`         | Path to the storage directory                           | `-`     |
+| `--storage-tmp-path`     | Path to the temporary storage directory                 | `-`     |
+| `--tls-cert-path`        | Path to the TLS certificate                             | `-`     |
+| `--tls-key-path`         | Path to the TLS key                                     | `-`     |
 
 <br />
 
@@ -211,96 +211,43 @@ litebase config show
 Manage databases
 
 ```shell
-litebase database
+litebase database [command]
 ```
 
 **Commands**
 
-| Command                              | Description                   |
-| :----------------------------------- | :---------------------------- |
-| `backup [command]`                   | Manage database backups       |
-| `create <name> [--flags]`            | Create a new database         |
-| `delete <name>`                      | Delete a database             |
-| `list`                               | List databases                |
-| `query <name> <statement> [--flags]` | Execute a query on a database |
-| `query-logs`                         | View database query logs      |
-| `restore <name>`                     | Restore a database            |
-| `show <name>`                        | Get a database                |
-| `update <name>`                      | Update an existing database   |
-
-<br />
-
-### `database` `create`
-
-Create a new database
-
-```shell
-litebase database create <name>
-```
-
-**Parameters**
-
-| Parameter | Description              |
-| :-------- | :----------------------- |
-| `<name>`  | The name of the database |
-
-<br />
-
-### `database` `delete`
-
-Delete a database
-
-```shell
-litebase database delete <name>
-```
-
-**Parameters**
-
-| Parameter | Description              |
-| :-------- | :----------------------- |
-| `<name>`  | The name of the database |
-
-<br />
-
-### `database` `list`
-
-List all databases
-
-```shell
-litebase database list
-```
-
-<br />
-
-### `database` `update`
-
-Update a database
-
-```shell
-litebase database update <name>
-```
-
-**Parameters**
-
-| Parameter | Description              |
-| :-------- | :----------------------- |
-| `<name>`  | The name of the database |
+| Command                                            | Description                   |
+| :------------------------------------------------- | :---------------------------- |
+| `database` `backup [command]`                      | Manage database backups       |
+| `database` `branch [command]`                      | Manage database branches      |
+| `database` `create` `<database>`                   | Create a new database         |
+| `database` `delete` `<database>`                   | Delete a database             |
+| `database` `list`                                  | List databases                |
+| `database` `query` `<database/branch> <statement>` | Execute a query on a database |
+| `database` `query-logs [command]`                  | View database query logs      |
+| `database` `restore` `<...parameters> [--flag]`    | Restore a database            |
+| `database` `show <database>`                       | Get a database                |
+| `database` `snapshot [command]`                    | View database snapshots       |
+| `database` `update <database>`                     | Update an existing database   |
 
 <br />
 
 ### `database` `backup`
 
-Manage logical backups for a database
+Manage database backups
 
 ```shell
-litebase database backup <name>
+litebase database backup [command] [--flags]
 ```
 
-**Parameters**
+**Commands**
 
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
+| Command                                                    | Description                                |
+| :--------------------------------------------------------- | :----------------------------------------- |
+| `database` `backup` `create <database/branch>`             | Create a new database backup               |
+| `database` `backup` `delete <database/branch> <timestamp>` | Delete a database backup                   |
+| `database` `backup` `list <database/branch>`               | List database backups                      |
+| `database` `backup` `show <database/branch> <timestamp>`   | Show details of a specific database backup |
 
 <br />
 
@@ -309,7 +256,7 @@ litebase database backup <name>
 Create a new backup of a database.
 
 ```shell
-litebase database backup create <name>
+litebase database backup create <database/branch>
 ```
 
 **Parameters**
@@ -325,15 +272,15 @@ litebase database backup create <name>
 Delete a backup of a database, this action is irreversible.
 
 ```shell
-litebase database backup delete <name> <id>
+litebase database backup delete <database/branch> <timestamp>
 ```
 
 **Parameters**
 
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
-| `<id>`    | The id of the backup to delete                 |
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+| `<timestamp>`       | The timestamp of the backup to delete          |
 
 <br />
 
@@ -342,22 +289,33 @@ litebase database backup delete <name> <id>
 List all backups of a database.
 
 ```shell
-litebase database backup list <name>
+litebase database backup list <database/branch>
 ```
 
 **Parameters**
 
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+
+<br />
 
 ### `database` `branch`
 
 Manage database branches
 
 ```shell
-litebase database branch
+litebase database branch [command]
 ```
+
+**Commands**
+
+| Command                                        | Description                                |
+| :--------------------------------------------- | :----------------------------------------- |
+| `database` `branch` `create <database>`        | Create a new database branch               |
+| `database` `branch` `delete <database/branch>` | Delete a database branch                   |
+| `database` `branch` `list <database>`          | List all database branches                 |
+| `database` `branch` `show <database/branch>`   | Show details of a specific database branch |
 
 <br />
 
@@ -366,14 +324,15 @@ litebase database branch
 Create a new database branch
 
 ```shell
-litebase database branch create <name>
+litebase database branch create <database/branch> <new-branch>
 ```
 
 **Parameters**
 
-| Parameter | Description              |
-| :-------- | :----------------------- |
-| `<name>`  | The name of the database |
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+| `<new-branch>`      | The name of the new branch to create           |
 
 <br />
 
@@ -382,30 +341,14 @@ litebase database branch create <name>
 Delete a database branch
 
 ```shell
-litebase database branch delete <name>
+litebase database branch delete <database/branch>
 ```
 
 **Parameters**
 
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
-
-<br />
-
-#### `database` `branch` `update`
-
-Update a database branch
-
-```shell
-litebase database branch update <name>
-```
-
-**Parameters**
-
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
+| Parameter    | Description                                    |
+| :----------- | :--------------------------------------------- |
+| `<database>` | The name of the database, including the branch |
 
 <br />
 
@@ -414,14 +357,189 @@ litebase database branch update <name>
 List all database branches
 
 ```shell
-litebase database branch list <name>
+litebase database branch list <database/branch>
 ```
 
 **Parameters**
 
-| Parameter | Description              |
-| :-------- | :----------------------- |
-| `<name>`  | The name of the database |
+| Parameter           | Description              |
+| :------------------ | :----------------------- |
+| `<database/branch>` | The name of the database |
+
+<br />
+
+#### `database` `branch` `show`
+
+Show details of a specific database branch
+
+```shell
+litebase database branch show <database/branch>
+```
+
+**Parameters**
+
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+
+<br />
+
+### `database` `create`
+
+Create a new database
+
+```shell
+litebase database create <database>
+```
+
+**Parameters**
+
+| Parameter    | Description              |
+| :----------- | :----------------------- |
+| `<database>` | The name of the database |
+
+**Flags**
+
+| Flag               | Description                                     | Default |
+| :----------------- | :---------------------------------------------- | :------ |
+| `--primary-branch` | The name of the primary branch for the database | `main`  |
+
+<br />
+
+### `database` `delete`
+
+Delete a database
+
+```shell
+litebase database delete <database>
+```
+
+**Parameters**
+
+| Parameter    | Description              |
+| :----------- | :----------------------- |
+| `<database>` | The name of the database |
+
+<br />
+
+### `database` `list`
+
+List all databases
+
+```shell
+litebase database list
+```
+
+<br />
+
+### `database` `query`
+
+Execute a query on a database
+
+```shell
+litebase database query <database/branch> <statement>
+```
+
+**Positional Parameters**
+
+```shell
+litebase database query <database/branch> "SELECT * FROM users WHERE role = ? AND age > ?" \
+  --parameters '[
+    {"value": "admin", "type": "TEXT"},
+    {"value": 25, "type": "INTEGER"}
+  ]'
+```
+
+**Named Parameters**
+
+```shell
+litebase database query <database/branch> "SELECT * FROM users WHERE role = :role AND age > :min_age" \
+  --parameters '[
+    {"name": "role", "value": "admin", "type": "TEXT"},
+    {"name": "min_age", "value": 25, "type": "INTEGER"}
+  ]'
+```
+
+**Multiple Parameter Sets**
+
+```shell
+litebase database query <database/branch> "INSERT INTO users (name, age) VALUES (?, ?)" \
+  --parameter-sets '[
+    [
+      {"value": "bob", "type": "TEXT"},
+      {"value": 30, "type": "INTEGER"}
+    ],
+    [
+      {"value": "alice", "type": "TEXT"},
+      {"value": 25, "type": "INTEGER"}
+    ],
+    [
+      {"value": "charlie", "type": "TEXT"},
+      {"value": 35, "type": "INTEGER"}
+    ]
+  ]'
+```
+
+**Parameters**
+
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+| `<statement>`       | The SQL statement to execute                   |
+
+**Flags**
+
+| Flag               | Description                                      | Default |
+| :----------------- | :----------------------------------------------- | :------ |
+| `--output`         | The format of the output (json or table)         | `json`  |
+| `--parameters`     | Query parameters in JSON format                  | `-`     |
+| `--parameter-sets` | Multiple sets of query parameters in JSON format | `-`     |
+
+<br />
+
+### `database` `query-logs`
+
+View database query logs
+
+```shell
+litebase database query-logs [command]
+```
+
+**Commands**
+
+| Command                                          | Description         |
+| :----------------------------------------------- | :------------------ |
+| `database` `query-logs` `list <database/branch>` | List all query logs |
+
+### `database` `query-logs` `list`
+
+List all query logs for a database
+
+```shell
+litebase database query-logs list <database/branch>
+```
+
+**Parameters**
+
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+
+<br />
+
+### `database` `update`
+
+Update a database
+
+```shell
+litebase database update <database>
+```
+
+**Parameters**
+
+| Parameter    | Description              |
+| :----------- | :----------------------- |
+| `<database>` | The name of the database |
 
 <br />
 
@@ -430,23 +548,24 @@ litebase database branch list <name>
 Restore a database from a backup or snapshot
 
 ```shell
-litebase database restore <name>
+litebase database restore <source-database/branch> <target-database/branch>
 ```
 
 **Parameters**
 
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
+| Parameter                  | Description                                           |
+| :------------------------- | :---------------------------------------------------- |
+| `<source-database/branch>` | The name of the source database, including the branch |
+| `<target-database/branch>` | The name of the target database, including the branch |
 
 <br />
 
 ### `database` `snapshot`
 
-Manage database snapshots
+View database snapshots
 
 ```shell
-litebase database snapshot
+litebase database snapshot [command]
 ```
 
 <br />
@@ -456,14 +575,14 @@ litebase database snapshot
 List all database snapshots
 
 ```shell
-litebase database snapshot list <name>
+litebase database snapshot list <database/branch>
 ```
 
 **Parameters**
 
-| Parameter | Description                                    |
-| :-------- | :--------------------------------------------- |
-| `<name>`  | The name of the database, including the branch |
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
 
 <br />
 
@@ -472,15 +591,15 @@ litebase database snapshot list <name>
 Show a specific database snapshot
 
 ```shell
-litebase database snapshot show <name> <id>
+litebase database snapshot show <database/branch> <timestamp>
 ```
 
 **Parameters**
 
-| Parameter | Description                                     |
-| :-------- | :---------------------------------------------- |
-| `<name>`  | The` name of the database, including the branch |
-| `<id>`    | The id of the snapshot to show                  |
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+| `<timestamp>`       | The timestamp of the snapshot to show          |
 
 ---
 
@@ -504,13 +623,13 @@ litebase profile
 
 **Commands**
 
-| Command                           | Description       |
-| :-------------------------------- | :---------------- |
-| `profile create <name> [--flags]` | Create a profile  |
-| `profile current`                 | Show current      |
-| `profile delete <name>`           | Delete a profile  |
-| `profile list`                    | List all profiles |
-| `profile switch <name>`           | Switch profile    |
+| Command                   | Description       |
+| :------------------------ | :---------------- |
+| `profile` `create <name>` | Create a profile  |
+| `profile` `current`       | Show current      |
+| `profile` `delete <name>` | Delete a profile  |
+| `profile` `list`          | List all profiles |
+| `profile` `switch <name>` | Switch profile    |
 
 <br />
 
@@ -530,16 +649,16 @@ litebase profile create <name>
 
 **Flags**
 
-| Option                        | Description                                              | Default |
+| Flag                          | Description                                              | Default |
 | :---------------------------- | :------------------------------------------------------- | :------ |
-| `--profile-access-key-id`     | Access Key ID (required if type is Access Key)           | -       |
-| `--profile-access-key-secret` | Access Key Secret (required if type is Access Key)       | -       |
-| `--profile-cluster`           | Cluster URL (required)                                   | -       |
-| `--profile-name`              | Name of the profile (required)                           | -       |
-| `--profile-password`          | Password for Basic Auth (required if type is Basic Auth) | -       |
-| `--profile-token`             | Token value (required if type is Token)                  | -       |
-| `--profile-type`              | Type of profile (Access Key or Basic Auth) (required)    | -       |
-| `--profile-username`          | Username for Basic Auth (required if type is Basic Auth) | -       |
+| `--profile-access-key-id`     | Access Key ID (required if type is Access Key)           | `-`     |
+| `--profile-access-key-secret` | Access Key Secret (required if type is Access Key)       | `-`     |
+| `--profile-cluster`           | Cluster URL (required)                                   | `-`     |
+| `--profile-name`              | Name of the profile (required)                           | `-`     |
+| `--profile-password`          | Password for Basic Auth (required if type is Basic Auth) | `-`     |
+| `--profile-token`             | Token value (required if type is Token)                  | `-`     |
+| `--profile-type`              | Type of profile (Access Key or Basic Auth) (required)    | `-`     |
+| `--profile-username`          | Username for Basic Auth (required if type is Basic Auth) | `-`     |
 
 <br />
 
@@ -594,16 +713,16 @@ litebase serve
 
 **Flags**
 
-| Option        | Description                                | Default           |
+| Flag          | Description                                | Default           |
 | :------------ | :----------------------------------------- | :---------------- |
 | `--data-path` | The path to the data directory             | `./.litebase`     |
 | `--debug`     | Run the server in debug mode               | `false`           |
 | `--help`      | Display usage help                         |                   |
 | `--port`      | The port to run the server on              | `8080`            |
-| `--signature` | The signature to use for server encryption | -                 |
+| `--signature` | The signature to use for server encryption | `-`               |
 | `--tmp-path`  | The directory to use for temporary files   | `./.litebase-tmp` |
-| `--tls-cert`  | The path to the TLS certificate            | -                 |
-| `--tls-key`   | The path to the TLS key                    | -                 |
+| `--tls-cert`  | The path to the TLS certificate            | `-`               |
+| `--tls-key`   | The path to the TLS key                    | `-`               |
 
 **Environment Variables:**
 
@@ -612,10 +731,10 @@ litebase serve
 | `LITEBASE_DATA_PATH`     | The path to the data directory                  | `./.litebase`     |
 | `LITEBASE_DEBUG`         | The port to run the server on                   | `false`           |
 | `LITEBASE_PORT`          | The port to run the server on                   | `8080`            |
-| `LITEBASE_SIGNATURE`     | The signature to use for server encryption      | -                 |
+| `LITEBASE_SIGNATURE`     | The signature to use for server encryption      | `-`               |
 | `LITEBASE_TMP_PATH`      | The path to the temporary directory             | `./.litebase-tmp` |
-| `LITEBASE_TLS_CERT_PATH` | The path to the TLS certificate                 | -                 |
-| `LITEBASE_TLS_KEY_PATH`  | The path to the TLS key                         | -                 |
+| `LITEBASE_TLS_CERT_PATH` | The path to the TLS certificate                 | `-`               |
+| `LITEBASE_TLS_KEY_PATH`  | The path to the TLS key                         | `-`               |
 | `LITEBASE_USERNAME`      | The username to use when initializing a cluster | `root`            |
 
 ---
@@ -640,13 +759,13 @@ litebase token
 
 **Commands**
 
-| Command                 | Description              |
-| :---------------------- | :----------------------- |
-| `create [--flags]`      | Create a new token       |
-| `delete <id>`           | Delete a token           |
-| `list`                  | List tokens              |
-| `show <id>`             | Show token details       |
-| `update <id> [--flags]` | Update an existing token |
+| Command               | Description              |
+| :-------------------- | :----------------------- |
+| `token` `create`      | Create a new token       |
+| `token` `delete <id>` | Delete a token           |
+| `token` `list`        | List tokens              |
+| `token` `show <id>`   | Show token details       |
+| `token` `update <id>` | Update an existing token |
 
 <br />
 
@@ -660,10 +779,10 @@ litebase token create [--flags]
 
 **Flags**
 
-| Option          | Description                                 | Default |
+| Flag            | Description                                 | Default |
 | :-------------- | :------------------------------------------ | :------ |
-| `--description` | A description for the token                 | -       |
-| `--statements`  | Define privileges for this token using JSON | -       |
+| `--description` | A description for the token                 | `-`     |
+| `--statements`  | Define privileges for this token using JSON | `-`     |
 
 <br />
 
@@ -707,10 +826,10 @@ litebase token update <id> [--flags]
 
 **Flags**
 
-| Option          | Description                                 | Default |
+| Flag            | Description                                 | Default |
 | :-------------- | :------------------------------------------ | :------ |
-| `--description` | A description for the token                 | -       |
-| `--statements`  | Define privileges for this token using JSON | -       |
+| `--description` | A description for the token                 | `-`     |
+| `--statements`  | Define privileges for this token using JSON | `-`     |
 
 ---
 
@@ -724,13 +843,13 @@ litebase user
 
 **Commands**
 
-| Command                            | Description       |
-| :--------------------------------- | :---------------- |
-| `user create [--flags]`            | Create a new user |
-| `user delete <username>`           | Delete a user     |
-| `user list [--flags]`              | List all users    |
-| `user show <username>`             | Show user details |
-| `user update <username> [--flags]` | Update a user     |
+| Command                    | Description       |
+| :------------------------- | :---------------- |
+| `user` `create`            | Create a new user |
+| `user` `delete <username>` | Delete a user     |
+| `user` `list`              | List all users    |
+| `user` `show <username>`   | Show user details |
+| `user` `update <username>` | Update a user     |
 
 <br />
 
@@ -744,11 +863,11 @@ litebase user create [--flags]
 
 **Flags**
 
-| Option           | Description                                | Default |
+| Flag             | Description                                | Default |
 | :--------------- | :----------------------------------------- | :------ |
-| `--new-password` | Password for the new user                  | -       |
-| `--new-username` | Username for the new user                  | -       |
-| `--statements`   | Define privileges for this user using JSON | -       |
+| `--new-password` | Password for the new user                  | `-`     |
+| `--new-username` | Username for the new user                  | `-`     |
+| `--statements`   | Define privileges for this user using JSON | `-`     |
 
 <br />
 
@@ -810,8 +929,8 @@ litebase user update <username> [--flags]
 
 **Flags**
 
-| Option         | Description                                | Default |
+| Flag           | Description                                | Default |
 | :------------- | :----------------------------------------- | :------ |
-| `--statements` | Define privileges for this user using JSON | -       |
+| `--statements` | Define privileges for this user using JSON | `-`     |
 
 <br />
