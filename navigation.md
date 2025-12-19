@@ -1,6 +1,7 @@
 - Getting Started
   - [Overview](/docs/overview/)
-  // - [Installation](/docs/getting-started/installation/)
+  - [Installation](/docs/getting-started/installation/)
+  - [Configuration](/docs/getting-started/configuration/)
 - Core Concepts
   - [Architecture](/docs/architecture/)
   - [Security](/docs/security/)
