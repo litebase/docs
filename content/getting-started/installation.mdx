@@ -5,18 +5,63 @@ section: Getting Started
 tags: ["getting-started", "installation"]
 ---
 
+<Aside type="warning">
+  Litebase is in early alpha. Many features are on the way, and these docs will
+  be updated soon. Follow the progress by starring on
+  [GitHub](https://github.com/litebase/litebase) and signing up for
+  [updates](/).
+</Aside>
+
 <Lead>
-  Litebase is a single binary that you can download and run on your local
-  machine or server. Follow these steps to get started with Litebase.
+  Litebase is a single binary available for Linux, macOS, and Windows that can be installed on your local machine or remote server.
 </Lead>
 
-With the Litebase CLI you can issue authentication credentials, manage databases, execute SQL commands and more. The CLI is available for Linux, macOS, and Windows. You can download the latest version
-using the following command in your terminal:
+<Steps>
+1. **Install Litebase CLI**
+
+    To get started with Litebase, you can install it using the following command:
+
+    ```shell
+    curl -sL https://litebase.com/install.sh | sh
+    ```
+    
+    Or, you can download the latest version from the [Litebase GitHub repository](https://github.com/litebase/litebase/releases).
+
+  2. **Configure Litebase**
+
+      After installation, you should configure Litebase to ensure it's set up for your needs. You can do this by running:
+
+      ```shell
+      litebase config
+      ```
+
+      This command will walk you through the configuration process which entails selecting storage options and providing necessary details. For more detailed information about configuring Litebase, especially for production, refer to the [configuration guide](/docs/getting-started/configuration).
+
+  3. **Start Litebase Server**
+      ```shell
+      litebase start
+      ```
+
+      Once started, Litebase will automatically create a directory in your home folder called `~/.litebase`, which will contain configuration and data files.
+</Steps>
+
+## Next Steps
+
+Congratulations! You've successfully installed and started Litebase. You can now start using it to manage your projects and data.
+
+### Connecting to Litebase
+
+To connect to the Litebase Server, you can use one of our [supported SDKs](/docs/interacting-with-databases/#supported-clients).
+
+We plan to provide support for more languages and frameworks soon!
+
+
+### CLI Reference
+Once installed, you can use `--help` to see a list of available commands.
 
 ```shell
-curl -sSL https://litebase.com/install.sh | sh
+litebase --help
 ```
 
-Or, you can download the latest version from the [Litebase GitHub repository](https://github.com/litebase/litebase/releases).
+For a full reference of the CLI commands, see the [CLI documentation](/docs/cli/reference).
 
-Once installed, you can run `litebase --help` to see a list of available commands and flags. You can also refer to the [CLI Reference](/docs/cli/reference).
