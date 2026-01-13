@@ -315,6 +315,7 @@ litebase database branch [command]
 | `database` `branch` `create <database>`        | Create a new database branch               |
 | `database` `branch` `delete <database/branch>` | Delete a database branch                   |
 | `database` `branch` `list <database>`          | List all database branches                 |
+| `database` `branch` `settings [command]`       | Manage database branch settings            |
 | `database` `branch` `show <database/branch>`   | Show details of a specific database branch |
 
 <br />
@@ -381,6 +382,70 @@ litebase database branch show <database/branch>
 | Parameter           | Description                                    |
 | :------------------ | :--------------------------------------------- |
 | `<database/branch>` | The name of the database, including the branch |
+
+<br />
+
+#### `database` `branch` `settings`
+
+Manage database branch settings
+
+```shell
+litebase database branch settings [command]
+```
+
+**Commands**
+
+| Command                                            | Description                         |
+| :------------------------------------------------- | :---------------------------------- |
+| `database` `branch` `settings` `show <database/branch>` | Show database branch settings       |
+| `database` `branch` `settings` `update <database/branch>` | Update database branch settings |
+
+<br />
+
+##### `database` `branch` `settings` `show`
+
+Show database branch settings
+
+```shell
+litebase database branch settings show <database/branch>
+```
+
+**Parameters**
+
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+
+<br />
+
+##### `database` `branch` `settings` `update`
+
+Update database branch settings
+
+```shell
+litebase database branch settings update <database/branch>
+```
+
+**Parameters**
+
+| Parameter           | Description                                    |
+| :------------------ | :--------------------------------------------- |
+| `<database/branch>` | The name of the database, including the branch |
+
+**Flags**
+
+| Flag                                    | Description                                       | Default |
+| :-------------------------------------- | :------------------------------------------------ | :------ |
+| `--backups-enabled`                     | Enable automated backups                          | `false` |
+| `--backup-interval`                     | Backup interval (e.g., 24h, 48h)                  | `24h`   |
+| `--backups-retention-days`              | Days to retain backups                            | `30`    |
+| `--error-logs-enabled`                  | Enable error logging                              | `true`  |
+| `--error-logs-retention-days`           | Days to retain error logs                         | `15`    |
+| `--incremental-backups-enabled`         | Enable incremental backups                        | `true`  |
+| `--incremental-backups-retention-days`  | Days to retain incremental backups                | `7`     |
+| `--query-logs-enabled`                  | Enable query logging                              | `true`  |
+| `--query-logs-retention-days`           | Days to retain query logs                         | `15`    |
+| `--foreign-keys`                        | Foreign keys pragma (ON or OFF)                   | `-`     |
 
 <br />
 
